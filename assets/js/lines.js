@@ -35,12 +35,12 @@
 
 	    const margin = {top: 50, right: 0, bottom: 50, left: 0};
 
-		const x = d3.scaleLinear()
-	    	.domain([0, nbPoints]).nice()
+		let x = d3.scaleLinear()
+	    	.domain([0, nbPoints])
 	    	.range([margin.left, width - margin.right]);
 
-	    const y = d3.scaleLinear()
-	    	.domain([0, 1000]).nice()
+	    let y = d3.scaleLinear()
+	    	.domain([0, 1000])
 	    	.range([height - margin.bottom, margin.top]);
 
 	    const lineDrawer = d3.line()
@@ -65,6 +65,20 @@
 			    	.attr("d", lineDrawer)
 				})
 		 }
+
+		 $(window).resize(function () {
+	    	width = svg.node().width.baseVal.value,
+			height = svg.node().height.baseVal.value;
+
+			x.range([margin.left, width - margin.right]);
+			y.range([height - margin.bottom, margin.top]);
+
+			for (var i = 0; i < lines.length; i++) {
+				lines[i].svgPath.datum(lines[i].data)
+					.transition().duration(0)
+					.attr("d", lineDrawer);
+			}
+	    });
 
 		 // Animation
 		 function animate () {

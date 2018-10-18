@@ -14,6 +14,14 @@
 		canvas.width = width;
 		canvas.height = height;
 
+		$(window).resize(function () {
+			width = canvas.offsetWidth,
+			height = canvas.offsetHeight;
+
+			canvas.width = width;
+			canvas.height = height;
+		});
+
 		d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function (world) {
 			let land = topojson.feature(world, world.objects.land),
 				graticule = d3.geoGraticule10(),
@@ -22,7 +30,7 @@
 
 			let projection = d3.geoOrthographic()
 				.rotate(rotation)
-    			.translate([width/2 +100, height/2 +25])
+    			.translate([width/2, height/2])
     			.fitExtent([[2, 1], [width - 50, height - 50]], sphere)
     			.precision(1);
 

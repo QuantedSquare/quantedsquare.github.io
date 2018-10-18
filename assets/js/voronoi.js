@@ -21,6 +21,19 @@
 
 		let points = Array.from({length: nbPoints}, () => [Math.random() * width, Math.random() * height]);
 
+		$(window).resize(function () {
+			width = canvas.offsetWidth,
+			height = canvas.offsetHeight;
+
+			for (var i = points.length - 1; i >= 0; i--) {
+				points[i][0] = points[i][0]*(width/canvas.width);
+				points[i][1] = points[i][1]*(height/canvas.height);
+			}
+
+			canvas.width = width;
+			canvas.height = height;
+		});
+
 		function animate (progress) {
 			if($("#voronoi").isInViewport()) {
 				for (var i = 0; i < points.length/10; i++) {
