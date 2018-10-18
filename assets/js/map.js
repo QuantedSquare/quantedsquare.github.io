@@ -14,7 +14,7 @@
 		canvas.width = width;
 		canvas.height = height;
 
-		d3.json("https://unpkg.com/world-atlas@1/world/50m.json").then(function (world) {
+		d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function (world) {
 			let land = topojson.feature(world, world.objects.land),
 				graticule = d3.geoGraticule10(),
 				sphere = ({type: "Sphere"}),
@@ -24,14 +24,16 @@
 				.rotate(rotation)
     			.translate([width/2 +100, height/2 +25])
     			.fitExtent([[2, 1], [width - 50, height - 50]], sphere)
-    			.precision(0.1);
+    			.precision(1);
 
     		const path = d3.geoPath(projection, context);
 
     		function animate (progress) {
-    			rotation[0] += 0.01*progress;
-    			projection.translate([(width/2) + (width/5), height/2])
-    				.rotate(rotation);
+    			if($("#map").isInViewport()) {
+	    			rotation[0] += 0.01*progress;
+	    			projection.translate([(width/2) + (width/5), height/2])
+	    				.rotate(rotation);
+    			}
     		}
 
     		function draw (timestamp) {
@@ -43,22 +45,24 @@
 			    
 			    _t = timestamp;
 
-    			context.clearRect(0, 0, width, height);
+			    if($("#map").isInViewport()) {
+	    			context.clearRect(0, 0, width, height);
 
-    			context.beginPath();
-    			path(graticule);
-    			context.strokeStyle = "#FFF";
-    			context.stroke();
+	    			context.beginPath();
+	    			path(graticule);
+	    			context.strokeStyle = "#FFF";
+	    			context.stroke();
 
-  				context.beginPath();
-  				path(land);
-  				context.fillStyle = "#FFF";
-  				context.fill();
+	  				context.beginPath();
+	  				path(land);
+	  				context.fillStyle = "#FFF";
+	  				context.fill();
 
-  				context.beginPath();
-  				path(sphere);
-  				context.strokeStyle = "#FFF";
-  				context.stroke();
+	  				context.beginPath();
+	  				path(sphere);
+	  				context.strokeStyle = "#FFF";
+	  				context.stroke();
+  				}
 
   				animationFrame(draw)
     		}

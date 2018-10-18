@@ -22,25 +22,27 @@
 		let points = Array.from({length: nbPoints}, () => [Math.random() * width, Math.random() * height]);
 
 		function animate (progress) {
-			for (var i = 0; i < points.length/10; i++) {
-				if(i < 5) {
-					points[i][0] += animationSpeed*progress;
-					points[i][1] += animationSpeed*progress;
-				} else if(i < 10) {
-					points[i][0] += animationSpeed*progress;
-					points[i][1] -= animationSpeed*progress;
-				} else if(i < 15) {
-					points[i][0] += animationSpeed*progress;
-					points[i][1] -= animationSpeed*progress;
-				} else {
-					points[i][0] -= animationSpeed*progress;
-					points[i][1] -= animationSpeed*progress;
-				}
+			if($("#voronoi").isInViewport()) {
+				for (var i = 0; i < points.length/10; i++) {
+					if(i < 5) {
+						points[i][0] += animationSpeed*progress;
+						points[i][1] += animationSpeed*progress;
+					} else if(i < 10) {
+						points[i][0] += animationSpeed*progress;
+						points[i][1] -= animationSpeed*progress;
+					} else if(i < 15) {
+						points[i][0] += animationSpeed*progress;
+						points[i][1] -= animationSpeed*progress;
+					} else {
+						points[i][0] -= animationSpeed*progress;
+						points[i][1] -= animationSpeed*progress;
+					}
 
-				if(points[i][0] > width+10) points[i][0] = 0;
-				if(points[i][0] < -10) points[i][0] = width;
-				if(points[i][1] > height+10) points[i][1] = 0;
-				if(points[i][1] < -10) points[i][1] = height;
+					if(points[i][0] > width+10) points[i][0] = 0;
+					if(points[i][0] < -10) points[i][0] = width;
+					if(points[i][1] > height+10) points[i][1] = 0;
+					if(points[i][1] < -10) points[i][1] = height;
+				}
 			}
 
 		}
@@ -50,21 +52,24 @@
     
 		    let progress = timestamp - _t;
 		    
+		    if($("#voronoi").isInViewport()) {}
 		    animate(progress);
 		    
 		    _t = timestamp;
 
-			const delaunay = new d3.Delaunay.from(points);
-    		const voronoi = delaunay.voronoi([0.5, 0.5, width - 0.5, height - 0.5]);
+		    if($("#voronoi").isInViewport()) {
+				const delaunay = new d3.Delaunay.from(points);
+	    		const voronoi = delaunay.voronoi([0.5, 0.5, width - 0.5, height - 0.5]);
 
-    		context.clearRect(0, 0, width, height);
+	    		context.clearRect(0, 0, width, height);
 
-		    context.beginPath();
-		    voronoi.render(context);
-		    voronoi.renderBounds(context);
-		    context.strokeStyle = "#FFF";
-		    context.lineWidth = 2;
-		    context.stroke();
+			    context.beginPath();
+			    voronoi.render(context);
+			    voronoi.renderBounds(context);
+			    context.strokeStyle = "#FFF";
+			    context.lineWidth = 2;
+			    context.stroke();
+			}
 
 		    animationFrame(draw)
 		}
