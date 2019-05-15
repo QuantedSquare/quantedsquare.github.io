@@ -5,6 +5,12 @@
     <title>Quanted Square</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="icon" type="image/png" href="./images/favicon_png/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="./images/favicon_png/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="./images/favicon_png/57x57.png" sizes="57x57">
+    <link rel="icon" type="image/png" href="./images/favicon_png/72x72.png" sizes="72x72">
+    <link rel="icon" type="image/png" href="./images/favicon_png/114x114.png" sizes="114x114">
+    <link rel="icon" type="image/png" href="./images/favicon_png/144x144.png" sizes="144x144">
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/chart.css" />
     <noscript>
@@ -24,7 +30,11 @@
 <body class="is-preload">
     <!-- Header -->
     <header id="header">
-        <h1>Quanted Square</h1>
+        <div>
+            <span style="display: inline-block;height: 100%;vertical-align: middle;"></span>
+            <img style="vertical-align: middle;height:2em; line-height:2em;" src="./images/logo_couleur.png">
+        </div>
+        <!-- <h1>Quanted Square</h1> -->
         <nav>
             <ul>
                 <li><a class="french" href="#intro">Intro</a> <a class="english" href="#intro">Intro</a></li>
@@ -36,10 +46,22 @@
     </header>
     <!-- Intro -->
     <section id="intro" class="main style1 dark fullscreen">
-        <svg class="chart" id="lines"></svg>
+        <svg class="chart" id="lines">
+            <defs>
+                <linearGradient id="linearGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#A2FFAE" />
+                    <stop offset="100%" stop-color="#0CCCF9" />
+                </linearGradient>
+                <linearGradient id="linearPurple" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#FF1278" />
+                    <stop offset="100%" stop-color="#AC01CF" />
+                </linearGradient>
+            </defs>
+        </svg>
         <div class="content">
             <header>
-                <h2>Quanted Square</h2>
+                <img src="./images/logo_couleur_blanc.png">
+                <br>
                 <p class="english"><b>CTO as Service.</b></p>
                 <p class="french"><b>CTO as Service.</b></p>
             </header>

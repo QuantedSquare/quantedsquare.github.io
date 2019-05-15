@@ -1,83 +1,87 @@
-(function ($) {
-	let animationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-                window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+(function($) {
+    let animationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
     let _t = null;
 
-	const canvas = d3.select("#map").node();
-	const context = canvas.getContext("2d");
+    const canvas = d3.select("#map").node();
+    const context = canvas.getContext("2d");
 
-	$(window).on('load', function() {
-		let width = canvas.offsetWidth,
-			height = canvas.offsetHeight;
+    $(window).on('load', function() {
+        let width = canvas.offsetWidth,
+            height = canvas.offsetHeight;
 
-		canvas.width = width;
-		canvas.height = height;
+        canvas.width = width;
+        canvas.height = height;
 
-		$(window).resize(function () {
-			width = canvas.offsetWidth,
-			height = canvas.offsetHeight;
+        $(window).resize(function() {
+            width = canvas.offsetWidth,
+                height = canvas.offsetHeight;
 
-			canvas.width = width;
-			canvas.height = height;
-		});
+            canvas.width = width;
+            canvas.height = height;
+        });
 
-		d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function (world) {
-			let land = topojson.feature(world, world.objects.land),
-				graticule = d3.geoGraticule10(),
-				sphere = ({type: "Sphere"}),
-				rotation = [110, -40];
+        d3.json("https://unpkg.com/world-atlas@1/world/110m.json").then(function(world) {
+            let land = topojson.feature(world, world.objects.land),
+                graticule = d3.geoGraticule10(),
+                sphere = ({ type: "Sphere" }),
+                rotation = [110, -40];
 
-			let projection = d3.geoOrthographic()
-				.rotate(rotation)
-    			.translate([width/2, height/2])
-    			.fitExtent([[2, 1], [width - 50, height - 50]], sphere)
-    			.precision(1);
+            let projection = d3.geoOrthographic()
+                .rotate(rotation)
+                .translate([width / 2, height / 2])
+                .fitExtent([
+                    [2, 1],
+                    [width - 50, height - 50]
+                ], sphere)
+                .precision(1);
 
-    		const path = d3.geoPath(projection, context);
+            const path = d3.geoPath(projection, context);
 
-    		function animate (progress) {
-    			if($("#map").isInViewport()) {
-	    			rotation[0] += 0.01*progress;
-	    			projection.translate([(width/2) + (width/5), height/2])
-	    				.rotate(rotation);
-    			}
-    		}
+            function animate(progress) {
+                if ($("#map").isInViewport()) {
+                    rotation[0] += 0.01 * progress;
+                    projection.translate([(width / 2) + (width / 5), height / 2])
+                        .rotate(rotation);
+                }
+            }
 
-    		function draw (timestamp) {
-    			if (_t === null) _t = timestamp;
-    
-			    let progress = timestamp - _t;
-			    
-			    animate(progress);
-			    
-			    _t = timestamp;
+            function draw(timestamp) {
+                if (_t === null) _t = timestamp;
 
-			    if($("#map").isInViewport()) {
-	    			context.clearRect(0, 0, width, height);
+                let progress = timestamp - _t;
 
-	    			context.beginPath();
-	    			path(graticule);
-	    			context.strokeStyle = "#FFF";
-	    			context.stroke();
+                animate(progress);
 
-	  				context.beginPath();
-	  				path(land);
-	  				context.fillStyle = "#FFF";
-	  				context.fill();
+                _t = timestamp;
 
-	  				context.beginPath();
-	  				path(sphere);
-	  				context.strokeStyle = "#FFF";
-	  				context.stroke();
-  				}
+                if ($("#map").isInViewport()) {
+                    context.clearRect(0, 0, width, height);
 
-  				animationFrame(draw)
-    		}
+                    context.beginPath();
+                    path(graticule);
+                    //TODO: tester le gradient
+                    context.strokeStyle = "#FFF";
+                    context.stroke();
 
-    		animationFrame(draw)
+                    context.beginPath();
+                    path(land);
+                    context.fillStyle = "#FFF";
+                    context.fill();
 
-    		// draw();
-		});
-	});
+                    context.beginPath();
+                    path(sphere);
+                    context.strokeStyle = "#FFF";
+                    context.stroke();
+                }
+
+                animationFrame(draw)
+            }
+
+            animationFrame(draw)
+
+            // draw();
+        });
+    });
 })(jQuery);

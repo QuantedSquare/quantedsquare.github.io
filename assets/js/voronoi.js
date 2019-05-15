@@ -1,98 +1,98 @@
 (function($) {
-	let animationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-                window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    let animationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
     let _t = null;
 
-	const canvas = d3.select("#voronoi").node();
-	const context = canvas.getContext("2d");
+    const canvas = d3.select("#voronoi").node();
+    const context = canvas.getContext("2d");
 
-	let nbPoints = 100;
+    let nbPoints = 100;
 
-	$(window).on('load', function() {
+    $(window).on('load', function() {
 
-		let width = canvas.offsetWidth,
-			height = canvas.offsetHeight;
+        let width = canvas.offsetWidth,
+            height = canvas.offsetHeight;
 
-		canvas.width = width;
-		canvas.height = height;
+        canvas.width = width;
+        canvas.height = height;
 
-		let animationSpeed = 0.1;
+        let animationSpeed = 0.1;
 
-		let points = Array.from({length: nbPoints}, () => [Math.random() * width, Math.random() * height]);
+        let points = Array.from({ length: nbPoints }, () => [Math.random() * width, Math.random() * height]);
 
-		$(window).resize(function () {
-			width = canvas.offsetWidth,
-			height = canvas.offsetHeight;
+        $(window).resize(function() {
+            width = canvas.offsetWidth,
+                height = canvas.offsetHeight;
 
-			for (var i = points.length - 1; i >= 0; i--) {
-				points[i][0] = points[i][0]*(width/canvas.width);
-				points[i][1] = points[i][1]*(height/canvas.height);
-			}
+            for (var i = points.length - 1; i >= 0; i--) {
+                points[i][0] = points[i][0] * (width / canvas.width);
+                points[i][1] = points[i][1] * (height / canvas.height);
+            }
 
-			canvas.width = width;
-			canvas.height = height;
-		});
+            canvas.width = width;
+            canvas.height = height;
+        });
 
-		function animate (progress) {
-			if($("#voronoi").isInViewport()) {
-				for (var i = 0; i < points.length/10; i++) {
-					if(i < 5) {
-						points[i][0] += animationSpeed*progress;
-						points[i][1] += animationSpeed*progress;
-					} else if(i < 10) {
-						points[i][0] += animationSpeed*progress;
-						points[i][1] -= animationSpeed*progress;
-					} else if(i < 15) {
-						points[i][0] += animationSpeed*progress;
-						points[i][1] -= animationSpeed*progress;
-					} else {
-						points[i][0] -= animationSpeed*progress;
-						points[i][1] -= animationSpeed*progress;
-					}
+        function animate(progress) {
+            if ($("#voronoi").isInViewport()) {
+                for (var i = 0; i < points.length / 10; i++) {
+                    if (i < 5) {
+                        points[i][0] += animationSpeed * progress;
+                        points[i][1] += animationSpeed * progress;
+                    } else if (i < 10) {
+                        points[i][0] += animationSpeed * progress;
+                        points[i][1] -= animationSpeed * progress;
+                    } else if (i < 15) {
+                        points[i][0] += animationSpeed * progress;
+                        points[i][1] -= animationSpeed * progress;
+                    } else {
+                        points[i][0] -= animationSpeed * progress;
+                        points[i][1] -= animationSpeed * progress;
+                    }
 
-					if(points[i][0] > width+10) points[i][0] = 0;
-					if(points[i][0] < -10) points[i][0] = width;
-					if(points[i][1] > height+10) points[i][1] = 0;
-					if(points[i][1] < -10) points[i][1] = height;
-				}
-			}
+                    if (points[i][0] > width + 10) points[i][0] = 0;
+                    if (points[i][0] < -10) points[i][0] = width;
+                    if (points[i][1] > height + 10) points[i][1] = 0;
+                    if (points[i][1] < -10) points[i][1] = height;
+                }
+            }
 
-		}
+        }
+        //TODO: tes le gradient sur la case hover
+        function draw(timestamp) {
+            if (_t === null) _t = timestamp;
 
-		function draw (timestamp) {
-			if (_t === null) _t = timestamp;
-    
-		    let progress = timestamp - _t;
-		    
-		    if($("#voronoi").isInViewport()) {}
-		    animate(progress);
-		    
-		    _t = timestamp;
+            let progress = timestamp - _t;
 
-		    if($("#voronoi").isInViewport()) {
-				const delaunay = new d3.Delaunay.from(points);
-	    		const voronoi = delaunay.voronoi([0.5, 0.5, width - 0.5, height - 0.5]);
+            if ($("#voronoi").isInViewport()) {}
+            animate(progress);
 
-	    		context.clearRect(0, 0, width, height);
+            _t = timestamp;
 
-			    context.beginPath();
-			    voronoi.render(context);
-			    voronoi.renderBounds(context);
-			    context.strokeStyle = "#FFF";
-			    context.lineWidth = 2;
-			    context.stroke();
-			}
+            if ($("#voronoi").isInViewport()) {
+                const delaunay = new d3.Delaunay.from(points);
+                const voronoi = delaunay.voronoi([0.5, 0.5, width - 0.5, height - 0.5]);
 
-		    animationFrame(draw)
-		}
+                context.clearRect(0, 0, width, height);
 
-		animationFrame(draw);		
+                context.beginPath();
+                voronoi.render(context);
+                voronoi.renderBounds(context);
+                context.strokeStyle = "#FFF";
+                context.lineWidth = 2;
+                context.stroke();
+            }
 
-		canvas.onmousemove = event => {
-		    event.preventDefault();
-		    points[points.length-1] = [event.layerX, event.layerY];
-		};
+            animationFrame(draw)
+        }
 
-	});
+        animationFrame(draw);
+
+        canvas.onmousemove = event => {
+            event.preventDefault();
+            points[points.length - 1] = [event.layerX, event.layerY];
+        };
+
+    });
 })(jQuery);
