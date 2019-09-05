@@ -27,14 +27,14 @@
     </script>
 </head>
 
-<body class="is-preload">
+<body class="is-preload" style="padding-top:0 ">
     <!-- Header -->
-    <header id="header">
+    <!--     <header id="header">
         <div>
             <span style="display: inline-block;height: 100%;vertical-align: middle;"></span>
             <img style="vertical-align: middle;height:2em; line-height:2em;" src="./images/logo_couleur.png">
         </div>
-        <!-- <h1>Quanted Square</h1> -->
+        <h1>Quanted Square</h1>
         <nav>
             <ul>
                 <li><a class="french" href="#intro">Intro</a> <a class="english" href="#intro">Intro</a></li>
@@ -44,7 +44,7 @@
                 <li><a class="englishBtn" href="#">EN</a> <a class="frenchBtn" href="#">FR</a></li>
             </ul>
         </nav>
-    </header>
+    </header> -->
     <!-- Intro -->
     <section id="intro" class="main style1 dark fullscreen">
         <svg class="chart" id="lines">
@@ -61,48 +61,59 @@
         </svg>
         <div class="content">
             <header>
-                <img style="max-width: 100%;height: auto;" src="./images/logo_couleur_blanc.png">
+                <img style="max-width: 90%;height: auto;" src="./images/logo_couleur_blanc.png">
                 <br>
-                <p class="english"><b>CTO as Service.</b></p>
-                <p class="french"><b>CTO as Service.</b></p>
+                <br>
+                <p>Innovating is hard. Finding people to do it is even harder. <br>
+                    From the ground up we define the best solution and technical stack to fit your needs.
+                    <br />
+                    We develop your product and give assistance in recruting process for the perfect team.
+                    <br><br>
+                    <div>
+                        <img style="max-width: 8%;height: auto;" src="./images/fulls/techstars_logo_round.png">
+                        <br>That's what we do as Techstars Associate.<br>
+                        <i>We are CTO as Service.</i>
+                        <br /><br /><u>contact@quantedsquare.com</u>
+                    </div>
+                </p>
             </header>
-            <p>
-                </br><u>contact@quantedsquare.com</u>
-            </p>
-            <footer>
-                <a href="#one" class="button style2 down">More</a>
-            </footer>
         </div>
+        <footer>
+            <a href="#two" class="button style2 down anchored" style="height:2.5em">Next</a>
+            <!-- <a href="#one" class="button style2 down">More</a> -->
+        </footer>
     </section>
     <!-- One -->
     <section id="one" class="main style2 right dark fullscreen">
         <canvas class="chart" id="voronoi"></canvas>
-        <div class="content box style2">
-            <header>
-                <h2 class="english">What We Do</h2>
-                <h2 class="french">Notre offre</h2>
+        <div class="content box style2" style="padding: 2.5em">
+            <header style="margin-bottom: 2em">
+                <h2 class="english">We also do Products !</h2>
+                <h2 class="french">We also do Products !</h2>
             </header>
-            <p class="english">
-                You're starting a project? Trying to innovate?
-                <br />
-                <b>We help you start things up.</b>
-                <br /><br />
-                We define with you the best initial product for the issue you are trying to solve.
-                We find <b>the best technical stack</b> for your needs. Then we develop the first version of the product and assist you in recruting the perfect team.
-            </p>
-            <p class="french">
-                Vous commencez un projet?
-                Vous essayez d'innover?<br />
-                <b>Quanted Square vous aide à commencer efficacement.</b><br /><br />
-                Nous définissons ensemble le meilleur produit initial - MVP - pour votre besoin.<br />
-                Nous trouvons la <b>stack technique la plus efficiente</b> et développons la première version du produit.<br />
-                Quand il sera temps, nous vous assistons dans le recrutement de l'équipe parfaite !
-            </p>
+            <div>
+                <div class="product_screen">
+                    <img src="images/fulls/analytics_screen.png" />
+                </div>
+                <p style="float: left;width: 50%;padding-left: 3em;">
+                    <a href=""><u>Quanted Square Analytics</u></a>
+                    <br /><br />
+                    Get insight on your data in no time.
+                    <br /><br />
+                    Instantly understandable by anyone, no need to be technical or digital professional to find metrics which matter for your needs.
+                    <br /><br />
+                    Share the stories to explore and interact with slides, or get the print version to get slide deck ready in one click for your meeting.
+                    <br />
+                    <br />
+                    <br />
+                    <i><b>Alpha version:</b> We need feedbacks from you ! We are giving premium access for free for now; contact us to unlock it !</i>
+                </p>
+            </div>
         </div>
-        <a href="#two" class="button style2 down anchored">Next</a>
+        <!-- <a href="#two" class="button style2 down anchored">Next</a> -->
     </section>
     <!-- Two -->
-    <section id="two" class="main style2 left dark fullscreen">
+    <!--     <section id="two" class="main style2 left dark fullscreen">
         <canvas class="chart" id="map"></canvas>
         <div class="content box style2">
             <header>
@@ -121,15 +132,24 @@
             </p>
         </div>
         <a href="#work" class="button style2 down anchored">Next</a>
-    </section>
+    </section> -->
     <!-- Work -->
-    <section id="work" class="main style3 primary">
+    <!--     <section id="work" class="main style3 primary">
         <div class="content">
             <header>
+                <h2>Associate</h2>
+                <p>Quanted Square is know </p>
+            </header>
+            <div>
+                <article>
+                    <a href="" class="image fit"><img style="width: 50%;margin: auto;" src="images/fulls/logo_techstars.png" title="Techstars" alt="" /></a>
+                </article>
+            </div>
+            <header>
                 <h2>Clients</h2>
-                <!--                 <p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
+                                <p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
                     Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis
-                    arcu, id varius justo euismod in. Curabitur egestas consectetur magna vitae.</p> -->
+                    arcu, id varius justo euismod in. Curabitur egestas consectetur magna vitae.</p>
             </header>
             <div class="gallery">
                 <article class="from-left">
@@ -138,7 +158,7 @@
                 <article class="from-right">
                     <a href="https://www.keamedicals.com/" class="image fit"><img src="images/thumbs/kea_thumb.png" title="Airchitecture II" alt="" /></a>
                 </article>
-                <!--                 <article class="from-left">
+                                <article class="from-left">
                     <a href="images/fulls/03.jpg" class="image fit"><img src="images/thumbs/03.jpg" title="Air Lounge" alt="" /></a>
                 </article>
                 <article class="from-right">
@@ -149,27 +169,10 @@
                 </article>
                 <article class="from-right">
                     <a href="images/fulls/06.jpg" class="image fit"><img src="images/thumbs/06.jpg" title="Bent IX" alt="" /></a>
-                </article> -->
-            </div>
-            <header>
-                <h2>Publications</h2>
-            </header>
-            <div class="gallery">
-                <article class="from-left">
-                    <a href="https://medium.com/@fabien.ungerer/gdpr-feels-useless-b4bb70e89dd6" class="image fit"><img src="images/thumbs/article_gdpr_thumb.png" title="The Anonymous Red" alt="" /></a>
                 </article>
-                <article class="from-right">
-                    <a href="https://www.keamedicals.com/" class="image fit"><img src="images/thumbs/assemble1_thumb.png" title="Airchitecture II" alt="" /></a>
-                </article>
-                <article class="from-left">
-                    <a href="https://medium.com/@fabien.ungerer/gdpr-feels-useless-b4bb70e89dd6" class="image fit"><img src="images/thumbs/pmsi_codage_thumb.png" title="The Anonymous Red" alt="" /></a>
-                </article>
-                <!--                 <article class="from-right">
-                    <a href="https://www.keamedicals.com/" class="image fit"><img src="images/thumbs/assemble1_thumb.png" title="Airchitecture II" alt="" /></a>
-                </article> -->
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Contact -->
     <!-- <section id="contact" class="main style3 secondary">
                 <div class="content">

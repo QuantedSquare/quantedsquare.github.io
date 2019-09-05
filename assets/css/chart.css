@@ -3,3 +3,35 @@
     height: 100%;
     position: absolute;
 }
+
+
+.product_screen {
+    float: left;
+    width: 40%;
+    /*padding-right: 32px;*/
+    vertical-align: middle;
+    height: 100%;
+}
+
+.product_screen>img {
+    position: relative;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 3px;
+}
+
+.product_screen::before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.techstar_badge {
+    font-size: 14px;
+    line-height: normal;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 5%;
+}
