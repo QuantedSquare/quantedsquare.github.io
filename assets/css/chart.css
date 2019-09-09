@@ -27,6 +27,30 @@
     height: 100%;
 }
 
+.descr_product {
+    float: left;
+    width: 50%;
+    padding-left: 3em;
+}
+
+@media screen and (max-width: 480px) {
+
+    .product_screen {
+        float: none;
+        width: 100%;
+        /*padding-right: 32px;*/
+        vertical-align: middle;
+        height: 100%;
+    }
+
+    .descr_product {
+        float: none;
+        width: 100%;
+        padding-left: 0em;
+        padding-top: 1em;
+    }
+}
+
 .techstar_badge {
     font-size: 14px;
     line-height: normal;
