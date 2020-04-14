@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <!-- <v-container> -->
+    <v-container fluid class="pa-0">
         <v-row class="qs-black head-row" justify="center" align="center">
             <svg class="lines" viewBox="0 0 3000 720" width="100%">
                 <defs>
@@ -19,13 +18,47 @@
                 <image v-if="$vuetify.breakpoint.smAndDown" :xlink:href="require('../assets/logo_couleur_blanc.png')" x="30%" y="230" width="40%" />
             </svg>
         </v-row>
-        <v-row>
-            <v-col cols="12" style="padding: inherit;">
-                <v-timeline :dense="$vuetify.breakpoint.smAndDown">
-                    <v-timeline-item small class="qs-pink-grad">
+        <v-row justify="center" align="center" class="py-4">
+            <v-col cols="11" sm="10">
+                <h2 class="display-3">What we do</h2>
+            </v-col>
+            <v-col cols="11" sm="10">
+                <p class="body-1">
+                    Quanted Square is a web agency that develop state of the art websites and applications.
+                    <p />
+                    <p class="body-1">We were trusted by <a href="https://www.techstars.com/">Techstars</a>, one of the biggest Startups Accelerator in the world to help incubated companies with their digital challenges.
+                        <p class="body-1">
+                            Now our services are available for anyone!
+                        </p>
+            </v-col>
+        </v-row>
+        <v-row justify="center" align="center">
+            <v-col cols="11" sm="10">
+                <h2 class="display-3">What we did</h2>
+            </v-col>
+            <v-col cols="11" sm="10">
+                <v-row justify="center">
+                    <v-col cols="12" sm="6" lg="4">
                         <!-- <span slot="opposite">2019</span> -->
-                        <v-card class="mx-auto" max-width="400">
-                            <v-img class="white--text align-end" height="200px" contain :src="require('../assets/techstars_paris.png')">
+                        <v-card class="mx-auto">
+                            <v-img class="white--text align-end" height="250px" cover :src="require('../assets/odysway.png')">
+                                <!-- <v-card-title>Paris Techstars Associates</v-card-title> -->
+                            </v-img>
+                            <v-card-subtitle class="pb-0">2020 - Odysway</v-card-subtitle>
+                            <v-card-text class="text--primary">
+                                <p>Odysway is a digital travel agency. We develop their new website and tools.</p>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-btn color="#FF1278" text href="https://odysway.com/">
+                                    website
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-col>
+                    <v-col cols="12" sm="6" lg="4">
+                        <!-- <span slot="opposite">2019</span> -->
+                        <v-card class="mx-auto">
+                            <v-img class="white--text align-end" height="250px" cover :src="require('../assets/techstars_paris_2.jpeg')">
                                 <!-- <v-card-title>Paris Techstars Associates</v-card-title> -->
                             </v-img>
                             <v-card-subtitle class="pb-0">2019 - Paris Techstars Associates</v-card-subtitle>
@@ -41,28 +74,28 @@
                                 </v-btn>
                             </v-card-actions>
                         </v-card>
-                    </v-timeline-item>
-                    <v-timeline-item small class="qs-green-grad">
+                    </v-col>
+                    <v-col cols="12" sm="6" lg="4">
                         <!-- <span slot="opposite">2018</span> -->
-                        <v-card class="mx-auto" max-width="400">
-                            <!-- <v-img class="white--text align-end" height="200px" contain :src="require('../assets/qs-analytics.png')"> -->
-                            <v-card-title>Quanted Square Analytics</v-card-title>
+                        <v-card class="mx-auto">
+                            <v-img class="white--text align-end" height="250px" cover :src="require('../assets/qs-analytics.png')">
+                                <!-- <v-card-title>Quanted Square Analytics</v-card-title> -->
                             </v-img>
-                            <v-card-subtitle class="pb-0">2019</v-card-subtitle>
+                            <v-card-subtitle class="pb-0">2019 Quanted Square Analytics</v-card-subtitle>
                             <v-card-text class="text--primary">
                                 <p>A product to help you understand your Google Analytics Data</p>
                             </v-card-text>
                             <v-card-actions>
-                                <v-btn color="#FF1278" text>
+                                <v-btn color="#FF1278" text href="https://analytics.quantedsquare.com/">
                                     Try it
                                 </v-btn>
                             </v-card-actions>
                         </v-card>
-                    </v-timeline-item>
-                    <v-timeline-item small class="qs-pink-grad">
-                        <!-- <span slot="opposite">2019</span> -->
-                        <v-card class="mx-auto" max-width="400">
-                            <v-img class="white--text align-end" height="200px" contain :src="require('../assets/techstars_paris.png')">
+                    </v-col>
+                    <!-- <span slot="opposite">2019</span> -->
+                    <v-col cols="12" sm="6" lg="4">
+                        <v-card class="mx-auto">
+                            <v-img class="white--text align-end" height="250px" contain :src="require('../assets/techstars_paris.png')">
                                 <!-- <v-card-title>Paris Techstars Associates</v-card-title> -->
                             </v-img>
                             <v-card-subtitle class="pb-0">2018 - Product developement</v-card-subtitle>
@@ -75,8 +108,8 @@
                                 </v-btn>
                             </v-card-actions>
                         </v-card>
-                    </v-timeline-item>
-                </v-timeline>
+                    </v-col>
+                </v-row>
             </v-col>
         </v-row>
         <v-row class="qs-black" justify="center" align="center">
@@ -129,8 +162,7 @@
                 </p>
             </v-col>
         </v-row>
-        <!-- </v-container> -->
-    </div>
+    </v-container>
 </template>
 <script>
 import { scaleLinear, min, max } from 'd3'
@@ -196,15 +228,17 @@ export default {
                     }
 
                     if (point.y > 800) {
+                        point.y = 800;
                         point.random = -1
                     }
                     if (point.y < 200) {
+                        point.y = 200;
                         point.random = 1
                     }
                 });
             });
 
-            requestAnimationFrame(this.setRandomY)
+            // requestAnimationFrame(this.setRandomY)
         }
     },
     mounted: function() {
